@@ -1,12 +1,50 @@
 
 const inquirer = require('inquirer')
 const mysql = require('mysql2')
+const cTable = require('console.table')
+
+// set up mysql connection
+const db = mysql.createConnection(
+    {
+      host: 'localhost',
+      user: 'root',
+      password: 'mysqlishan99',
+      database: 'employee_tracker_db'
+    },
+
+    console.log(`Connected to the database`)
+);
+
+
+// for whatever reason executing the queries 'source db/schema.sql' and 'source db/seeds.sql' is not working, therefore
+db.query('SELECT * from entire_tables', (err, results) => {
+
+    if(err) console.log(err)
+
+    console.log(results)
+
+    console.table(results)
+    
+})
+
+
+
+
+
+
+
+
 
 let loopRunning = true;
 
 let departmentArray = []
 let employeeArray = []
 let roleArray = []
+
+
+
+
+
 
 
 
