@@ -54,8 +54,6 @@ const runApplication = async function() {
 
             employeesArray = results
 
-
-
             employeesArray.forEach(function(element) {
                 const firstNameString = element.first_name
                 const lastNameString = element.last_name
@@ -64,7 +62,6 @@ const runApplication = async function() {
             })
 
         })
-
 
 
 
@@ -127,7 +124,6 @@ const runApplication = async function() {
             let currentDepartment;
             let currentSalary;
 
-
             rolesArray.forEach(function(element) {
                 if(element.title === employeePromiseObject.employeeRole) {
                     currentTitle = element.title
@@ -136,27 +132,10 @@ const runApplication = async function() {
                 }
             })
 
-            
-
             db.query(`INSERT INTO employees (first_name, last_name, title, department, salary, manager) VALUES ('${employeePromiseObject.employeeFirstName}', '${employeePromiseObject.employeeLastName}', '${currentTitle}', '${currentDepartment}', ${currentSalary}, '${employeePromiseObject.employeeManager}')`, (err, results) => {
 
                 if(err) console.log(err)
-
-                console.log(results)
-
-            })
-
-            
-
-
-
-
-
-
-
-
-
-
+            })    
 
         } else if(p.option === 'Update Employee Role') {
             
@@ -248,7 +227,13 @@ const runApplication = async function() {
                 },
             ])
 
-            // add department
+            // `INSERT INTO employees (first_name, last_name, title, department, salary, manager) VALUES ('${employeePromiseObject.employeeFirstName}', '${employeePromiseObject.employeeLastName}', '${currentTitle}', '${currentDepartment}', ${currentSalary}, '${employeePromiseObject.employeeManager}')`
+
+            db.query(`INSERT INTO departments (department_name) VALUES ('${departmentPromiseObject.departmentName}')`, (err, results) => {
+
+                if(err) console.log(err)
+
+            })
 
 
 
