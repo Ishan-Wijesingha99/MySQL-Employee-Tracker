@@ -24,9 +24,10 @@ let loopRunning = true;
 let departmentsArray = []
 let employeesArray = []
 let rolesArray = []
+
 let allTitles = []
 let allEmployees = []
-
+let allDepartments = []
 
 
 const runApplication = async function() {
@@ -37,6 +38,10 @@ const runApplication = async function() {
         db.query('SELECT department_name FROM departments', (err, results) => {
 
             departmentsArray = results
+
+            departmentsArray.forEach(function(object) {
+                allDepartments.push(object.department_name)
+            })
         })
 
         // get new array of roles at the start of every loop
@@ -64,9 +69,7 @@ const runApplication = async function() {
         })
 
 
-
-
-
+        
         const p = await inquirer.prompt([
             {
                 type: 'list',
@@ -189,20 +192,18 @@ const runApplication = async function() {
                     name: 'roleSalary'
                 },
                 {
-                    type: 'input',
+                    type: 'list',
+                    choices: allDepartments,
                     message: "What department does the role belong to?",
                     name: 'roleDepartment'
                 },
             ])
 
-            // add role based off this
+            db.query(`INSERT INTO roles (title, department_name, salary) VALUES ('${rolePromiseObject.roleName}', '${rolePromiseObject.roleDepartment}', '${rolePromiseObject.roleSalary}')`, (err, results) => {
 
-
-
-
-
-
-
+                if(err) console.log(err)
+            })
+            
         } else if(p.option === 'View All Departments') {
             
             db.query('SELECT * FROM departments', (err, results) => {
@@ -227,28 +228,14 @@ const runApplication = async function() {
                 },
             ])
 
-            // `INSERT INTO employees (first_name, last_name, title, department, salary, manager) VALUES ('${employeePromiseObject.employeeFirstName}', '${employeePromiseObject.employeeLastName}', '${currentTitle}', '${currentDepartment}', ${currentSalary}, '${employeePromiseObject.employeeManager}')`
-
             db.query(`INSERT INTO departments (department_name) VALUES ('${departmentPromiseObject.departmentName}')`, (err, results) => {
 
                 if(err) console.log(err)
-
             })
-
-
-
-
-
 
         }
 
-
-
-
-
     }
-
-
 
 }
 
