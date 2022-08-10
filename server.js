@@ -69,7 +69,7 @@ const runApplication = async function() {
         })
 
 
-        
+
         const p = await inquirer.prompt([
             {
                 type: 'list',
@@ -127,11 +127,11 @@ const runApplication = async function() {
             let currentDepartment;
             let currentSalary;
 
-            rolesArray.forEach(function(element) {
-                if(element.title === employeePromiseObject.employeeRole) {
-                    currentTitle = element.title
-                    currentDepartment = element.department_name
-                    currentSalary = element.salary
+            rolesArray.forEach(function(object) {
+                if(object.title === employeePromiseObject.employeeRole) {
+                    currentTitle = object.title
+                    currentDepartment = object.department_name
+                    currentSalary = object.salary
                 }
             })
 
@@ -145,24 +145,39 @@ const runApplication = async function() {
             let updateRolePromiseObject = await inquirer.prompt([
                 {
                     type: 'list',
-                    choices: [employeesArray],
+                    choices: allEmployees,
                     message: "Which employee's role do you want to update?",
                     name: 'roleUpdateFullName'
                 },
                 {
                     type: 'list',
-                    choices: [rolesArray],
+                    choices: allTitles,
                     message: "Which role do you want to assign the selected employee?",
                     name: 'newRole'
                 },
             ])
 
+            // first, parse updateRolePromiseObject.roleUpdateFullName to get first name in seperate variable and last name in seperate variable 
+            // once that's done, you can use WHERE first_name = '' and last_name = ''
+            const firstName = updateRolePromiseObject.roleUpdateFullName.split(' ')[0]
+            const lastName = updateRolePromiseObject.roleUpdateFullName.split(' ')[1]
+            
+            let updateRoleTitle;
+            let updateRoleDepartment;
+            let updateRoleSalary;
 
+            rolesArray.forEach(function(object) {
+                if(object.title === updateRolePromiseObject.newRole) {
+                    updateRoleTitle = object.title
+                    updateRoleDepartment = object.department_name
+                    updateRoleSalary = object.salary
+                }
+            })
 
+            db.query(`UPDATE employees SET title = '${updateRoleTitle}', department = '${updateRoleDepartment}', salary = ${updateRoleSalary} WHERE first_name = '${firstName}' and last_name = '${lastName}'`, (err, results) => {
 
-
-
-
+                if(err) console.log(err)
+            })
 
         } else if(p.option === 'View All Roles') {
             
