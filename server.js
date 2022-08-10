@@ -16,17 +16,6 @@ const db = mysql.createConnection(
 );
 
 
-// for whatever reason executing the queries 'source db/schema.sql' and 'source db/seeds.sql' is not working, therefore
-db.query('SELECT * from entire_tables', (err, results) => {
-
-    if(err) console.log(err)
-
-    console.log(results)
-
-    console.table(results)
-    
-})
-
 
 
 
@@ -50,9 +39,10 @@ let roleArray = []
 
 const runApplication = async function() {
 
+
     while(loopRunning) {
 
-        const p = await inquirer.createPromptModule([
+        const p = await inquirer.prompt([
             {
                 type: 'list',
                 choices: ['View All Employees', 'Add Employee', 'Update Employee Role', 'View All Roles', 'Add Role', 'View All Departments', 'Add Department'],
@@ -63,10 +53,18 @@ const runApplication = async function() {
 
         if(p.option === 'View All Employees') {
 
+           
+            db.query('SELECT * FROM employees', (err, results) => {
 
+                if(err) console.log(err)
+            
+                console.log('\n\n\n')
+            
+                console.table(results)
 
-
-
+                console.log('\n\n\n\n\n\n\n')
+                
+            })
 
 
 
@@ -107,17 +105,6 @@ const runApplication = async function() {
 
         } else if(p.option === 'Update Employee Role') {
             
-            
-
-
-
-
-
-
-
-
-        } else if(p.option === 'View All Roles') {
-            
             let updateRolePromiseObject = await inquirer.prompt([
                 {
                     type: 'list',
@@ -138,6 +125,22 @@ const runApplication = async function() {
 
 
 
+
+
+        } else if(p.option === 'View All Roles') {
+            
+
+            db.query('SELECT * FROM roles', (err, results) => {
+
+                if(err) console.log(err)
+
+                console.log('\n\n\n')
+            
+                console.table(results)
+
+                console.log('\n\n\n\n\n\n\n')
+                
+            })
 
         } else if(p.option === 'Add Role') {
             
@@ -169,7 +172,17 @@ const runApplication = async function() {
 
         } else if(p.option === 'View All Departments') {
             
+            db.query('SELECT * FROM departments', (err, results) => {
 
+                if(err) console.log(err)
+
+                console.log('\n\n\n')
+            
+                console.table(results)
+
+                console.log('\n\n\n\n\n\n\n')
+                
+            })
 
 
 
@@ -204,3 +217,6 @@ const runApplication = async function() {
 
 
 }
+
+
+runApplication()
