@@ -1,4 +1,5 @@
 
+-- add values into employees table
 INSERT INTO employees (first_name, last_name, title, department, salary, manager)
 VALUES 
     ('John', 'Doe', 'Sales Lead', 'Sales', 100000, null),
@@ -12,6 +13,7 @@ VALUES
 
 
 
+-- add values into departments table 
 INSERT INTO departments (department_name)
 VALUES 
     ('Sales'),
@@ -21,6 +23,7 @@ VALUES
 
 
 
+-- add values into roles table
 INSERT INTO roles (title, department_name, salary)
 VALUES 
     ('Sales Lead', 'Sales', 100000),
