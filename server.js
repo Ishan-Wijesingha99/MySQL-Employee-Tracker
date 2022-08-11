@@ -155,7 +155,7 @@ const runApplication = async function() {
                 if(err) console.log(err)
 
                 // add white space in terminal
-                console.log('\n\n\n\n\n\n\n')
+                console.log('\n\n\n\n\n\n\n\n\n')
             })
 
         } else if(p.option === 'Update Employee Role') {
@@ -201,7 +201,7 @@ const runApplication = async function() {
                 if(err) console.log(err)
 
                 // add white space in terminal
-                console.log('\n\n\n\n\n\n\n')
+                console.log('\n\n\n\n\n\n\n\n\n')
             })
 
         } else if(p.option === 'View All Roles') {
@@ -251,7 +251,7 @@ const runApplication = async function() {
                 if(err) console.log(err)
 
                 // add white space in terminal
-                console.log('\n\n\n\n\n\n\n')
+                console.log('\n\n\n\n\n\n\n\n\n')
             })
             
         } else if(p.option === 'View All Departments') {
@@ -269,7 +269,7 @@ const runApplication = async function() {
                 console.table(results)
 
                 // add white space in terminal
-                console.log('\n\n\n\n\n\n\n')   
+                console.log('\n\n\n\n\n\n\n\n\n')   
             })
 
         } else if(p.option === 'Add Department') {
@@ -290,7 +290,7 @@ const runApplication = async function() {
                 if(err) console.log(err)
 
                 // add white space in terminal
-                console.log('\n\n\n\n\n\n\n')
+                console.log('\n\n\n\n\n\n\n\n\n')
             })
 
         }
