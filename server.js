@@ -153,7 +153,10 @@ const runApplication = async function() {
 
                 // if there is an error, log that error to the console
                 if(err) console.log(err)
-            })    
+
+                // add white space in terminal
+                console.log('\n\n\n\n\n\n\n')
+            })
 
         } else if(p.option === 'Update Employee Role') {
             
@@ -196,6 +199,9 @@ const runApplication = async function() {
 
                 // if there is an error, log that error to the console
                 if(err) console.log(err)
+
+                // add white space in terminal
+                console.log('\n\n\n\n\n\n\n')
             })
 
         } else if(p.option === 'View All Roles') {
@@ -243,6 +249,9 @@ const runApplication = async function() {
 
                 // if there is an error, log it to the console
                 if(err) console.log(err)
+
+                // add white space in terminal
+                console.log('\n\n\n\n\n\n\n')
             })
             
         } else if(p.option === 'View All Departments') {
@@ -279,6 +288,9 @@ const runApplication = async function() {
 
                 // if there is an error, log that error to the console
                 if(err) console.log(err)
+
+                // add white space in terminal
+                console.log('\n\n\n\n\n\n\n')
             })
 
         }
